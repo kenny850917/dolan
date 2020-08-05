@@ -4,6 +4,8 @@ import { ToastContainer } from "react-toastify";
 import Products from "./components/products";
 import ProductForm from "./components/productForm";
 import Customers from "./components/customers";
+import Home from "./components/home";
+import Profile from "./components/profile";
 import Rentals from "./components/rentals";
 import NotFound from "./components/notFound";
 import NavBar from "./components/navBar";
@@ -40,7 +42,9 @@ class App extends Component {
               path="/products"
               render={(props) => <Products {...props} user={this.state.user} />}
             />
+            <Route path="/home" component={Home} />
             <Route path="/customers" component={Customers} />
+            <Route path="/profile" component={Profile} />
             <Route path="/rentals" component={Rentals} />
             <Route path="/not-found" component={NotFound} />
             <Redirect from="/" exact to="/products" />

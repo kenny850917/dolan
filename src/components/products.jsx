@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import auth from "../services/authService";
 import ProductsTable from "./productTable";
 import ListGroup from "./common/listGroup";
 import Pagination from "./common/pagination";
@@ -23,7 +24,7 @@ class Products extends Component {
 
   async componentDidMount() {
     const { data } = await getGenres();
-    const genres = [{ _id: "", name: "All Genres" }, ...data];
+    const genres = [{ _id: "", name: "所有商品" }, ...data];
 
     const { data: products } = await getProducts();
     this.setState({ products, genres });
@@ -93,6 +94,11 @@ class Products extends Component {
     return { totalCount: filtered.length, data: products };
   };
 
+  constructor() {
+    super();
+    const user = auth.getCurrentUser();
+  }
+
   render() {
     const { length: count } = this.state.products;
     const { pageSize, currentPage, sortColumn, searchQuery } = this.state;
@@ -112,7 +118,7 @@ class Products extends Component {
           />
         </div>
         <div className="col">
-          {user && (
+          {user && user.isAdmin && (
             <Link
               to="/products/new"
               className="btn btn-primary"
@@ -121,7 +127,7 @@ class Products extends Component {
               New Product
             </Link>
           )}
-          <p>Showing {totalCount} products in the database.</p>
+          <p>目前顯示 {totalCount} 樣商品</p>
           <SearchBox value={searchQuery} onChange={this.handleSearch} />
           <ProductsTable
             products={products}

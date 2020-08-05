@@ -4,8 +4,8 @@ import { Link, NavLink } from "react-router-dom";
 const NavBar = ({ user }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <Link className="navbar-brand" to="/">
-        Vidly
+      <Link className="navbar-brand" to="/home">
+        Dolan
       </Link>
       <button
         className="navbar-toggler"
@@ -21,14 +21,14 @@ const NavBar = ({ user }) => {
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav">
           <NavLink className="nav-item nav-link" to="/products">
-            Products
+            產品
           </NavLink>
           <NavLink className="nav-item nav-link" to="/customers">
-            Customers
+            客戶
           </NavLink>
-          <NavLink className="nav-item nav-link" to="/rentals">
+          {/* <NavLink className="nav-item nav-link" to="/rentals">
             Rentals
-          </NavLink>
+          </NavLink> */}
           {!user && (
             <React.Fragment>
               <NavLink className="nav-item nav-link" to="/login">
