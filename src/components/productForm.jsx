@@ -1,29 +1,25 @@
 import React from "react";
 import Joi from "joi-browser";
 import Form from "./common/form";
-import { getMovie, saveMovie } from "../services/movieService";
+import { getProduct, saveProduct } from "../services/productService";
 import { getGenres } from "../services/genreService";
 
-class MovieForm extends Form {
+class ProductForm extends Form {
   state = {
     data: {
       title: "",
       genreId: "",
       numberInStock: "",
-      dailyRentalRate: ""
+      dailyRentalRate: "",
     },
     genres: [],
-    errors: {}
+    errors: {},
   };
 
   schema = {
     _id: Joi.string(),
-    title: Joi.string()
-      .required()
-      .label("Title"),
-    genreId: Joi.string()
-      .required()
-      .label("Genre"),
+    title: Joi.string().required().label("Title"),
+    genreId: Joi.string().required().label("Genre"),
     numberInStock: Joi.number()
       .required()
       .min(0)
@@ -33,7 +29,7 @@ class MovieForm extends Form {
       .required()
       .min(0)
       .max(10)
-      .label("Daily Rental Rate")
+      .label("Daily Rental Rate"),
   };
 
   async populateGenres() {
@@ -41,13 +37,13 @@ class MovieForm extends Form {
     this.setState({ genres });
   }
 
-  async populateMovie() {
+  async populateProduct() {
     try {
-      const movieId = this.props.match.params.id;
-      if (movieId === "new") return;
+      const productId = this.props.match.params.id;
+      if (productId === "new") return;
 
-      const { data: movie } = await getMovie(movieId);
-      this.setState({ data: this.mapToViewModel(movie) });
+      const { data: product } = await getProduct(productId);
+      this.setState({ data: this.mapToViewModel(product) });
     } catch (ex) {
       if (ex.response && ex.response.status === 404)
         this.props.history.replace("/not-found");
@@ -56,29 +52,29 @@ class MovieForm extends Form {
 
   async componentDidMount() {
     await this.populateGenres();
-    await this.populateMovie();
+    await this.populateProduct();
   }
 
-  mapToViewModel(movie) {
+  mapToViewModel(product) {
     return {
-      _id: movie._id,
-      title: movie.title,
-      genreId: movie.genre._id,
-      numberInStock: movie.numberInStock,
-      dailyRentalRate: movie.dailyRentalRate
+      _id: product._id,
+      title: product.title,
+      genreId: product.genre._id,
+      numberInStock: product.numberInStock,
+      dailyRentalRate: product.dailyRentalRate,
     };
   }
 
   doSubmit = async () => {
-    await saveMovie(this.state.data);
+    await saveProduct(this.state.data);
 
-    this.props.history.push("/movies");
+    this.props.history.push("/products");
   };
 
   render() {
     return (
       <div>
-        <h1>Movie Form</h1>
+        <h1>Product Form</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("title", "Title")}
           {this.renderSelect("genreId", "Genre", this.state.genres)}
@@ -91,4 +87,4 @@ class MovieForm extends Form {
   }
 }
 
-export default MovieForm;
+export default ProductForm;

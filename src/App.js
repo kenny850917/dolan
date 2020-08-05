@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import Movies from "./components/movies";
-import MovieForm from "./components/movieForm";
+import Products from "./components/products";
+import ProductForm from "./components/productForm";
 import Customers from "./components/customers";
 import Rentals from "./components/rentals";
 import NotFound from "./components/notFound";
@@ -35,15 +35,15 @@ class App extends Component {
             <Route path="/register" component={RegisterForm} />
             <Route path="/login" component={LoginForm} />
             <Route path="/logout" component={Logout} />
-            <ProtectedRoute path="/movies/:id" component={MovieForm} />
+            <ProtectedRoute path="/products/:id" component={ProductForm} />
             <Route
-              path="/movies"
-              render={props => <Movies {...props} user={this.state.user} />}
+              path="/products"
+              render={(props) => <Products {...props} user={this.state.user} />}
             />
             <Route path="/customers" component={Customers} />
             <Route path="/rentals" component={Rentals} />
             <Route path="/not-found" component={NotFound} />
-            <Redirect from="/" exact to="/movies" />
+            <Redirect from="/" exact to="/products" />
             <Redirect to="/not-found" />
           </Switch>
         </main>
