@@ -14,7 +14,7 @@ import Image from "./image";
 
 class Products extends Component {
   state = {
-    images: [],
+    // images: [],
     products: [],
     genres: [],
     currentPage: 1,
