@@ -3,6 +3,8 @@ import { Route, Redirect, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Products from "./components/products";
 import ProductForm from "./components/productForm";
+
+import CheckoutForm from "./components/checkoutForm";
 import Customers from "./components/customers";
 import Home from "./components/home";
 import Profile from "./components/profile";
@@ -38,6 +40,7 @@ class App extends Component {
             <Route path="/login" component={LoginForm} />
             <Route path="/logout" component={Logout} />
             <ProtectedRoute path="/products/:id" component={ProductForm} />
+            <ProtectedRoute path="/checkout/:id" component={CheckoutForm} />
             <Route
               path="/products"
               render={(props) => <Products {...props} user={this.state.user} />}

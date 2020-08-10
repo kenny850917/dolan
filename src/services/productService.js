@@ -13,6 +13,9 @@ export function getProducts() {
 export function getProduct(productId) {
   return http.get(productUrl(productId));
 }
+export function getProductCheckout(productId) {
+  return http.get(`checkout/${productId}`);
+}
 
 export function saveProduct(product) {
   if (product._id) {

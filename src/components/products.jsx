@@ -10,9 +10,11 @@ import { getGenres } from "../services/genreService";
 import { paginate } from "../utils/paginate";
 import _ from "lodash";
 import SearchBox from "./searchBox";
+import Image from "./image";
 
 class Products extends Component {
   state = {
+    images: [],
     products: [],
     genres: [],
     currentPage: 1,
@@ -129,6 +131,7 @@ class Products extends Component {
           )}
           <p>目前顯示 {totalCount} 樣商品</p>
           <SearchBox value={searchQuery} onChange={this.handleSearch} />
+
           <ProductsTable
             products={products}
             sortColumn={sortColumn}

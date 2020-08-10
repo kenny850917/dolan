@@ -1,0 +1,10 @@
+.table th,
+.table td {
+  vertical-align: middle;
+  padding: 1rem;
+}
+img {
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 150px;
+}

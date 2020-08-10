@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import _ from "lodash";
+// import "../image.css";
 
 class TableBody extends Component {
   renderCell = (item, column) => {
@@ -17,9 +18,9 @@ class TableBody extends Component {
 
     return (
       <tbody>
-        {data.map(item => (
+        {data.map((item) => (
           <tr key={item._id}>
-            {columns.map(column => (
+            {columns.map((column) => (
               <td key={this.createKey(item, column)}>
                 {this.renderCell(item, column)}
               </td>

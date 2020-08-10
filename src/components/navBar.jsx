@@ -24,7 +24,7 @@ const NavBar = ({ user }) => {
             產品
           </NavLink>
           <NavLink className="nav-item nav-link" to="/customers">
-            客戶
+            購物車
           </NavLink>
           {/* <NavLink className="nav-item nav-link" to="/rentals">
             Rentals
