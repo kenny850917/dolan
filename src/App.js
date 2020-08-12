@@ -11,6 +11,7 @@ import Profile from "./components/profile";
 import Rentals from "./components/rentals";
 import NotFound from "./components/notFound";
 import NavBar from "./components/navBar";
+import Navigation from "./components/navBar2";
 import LoginForm from "./components/loginForm";
 import RegisterForm from "./components/registerForm";
 import Logout from "./components/logout";
@@ -32,8 +33,10 @@ class App extends Component {
 
     return (
       <React.Fragment>
-        <ToastContainer />
+        {/* <ToastContainer /> */}
+
         <NavBar user={user} />
+        {/* <Navigation user={user} /> */}
         <main className="container">
           <Switch>
             <Route path="/register" component={RegisterForm} />
