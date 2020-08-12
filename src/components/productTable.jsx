@@ -3,14 +3,20 @@ import auth from "../services/authService";
 import { Link } from "react-router-dom";
 import Table from "./common/table";
 import Like from "./common/like";
+import Image from "./image";
 
 class ProductsTable extends Component {
   columns = [
     {
+      path: "image",
+      label: "Image",
+      content: (product) => <Image />,
+    },
+    {
       path: "title",
       label: "Title",
       content: (product) => (
-        <Link to={`/products/${product._id}`}>{product.title}</Link>
+        <Link to={`/checkout/${product._id}`}>{product.title}</Link>
       ),
     },
     { path: "genre.name", label: "Genre" },
@@ -39,10 +45,21 @@ class ProductsTable extends Component {
     ),
   };
 
+  adminEditColumn = {
+    path: "edit",
+    label: "Edit",
+    content: (product) => (
+      <Link to={`/products/${product._id}`}>{product.title}</Link>
+    ),
+  };
+
   constructor() {
     super();
     const user = auth.getCurrentUser();
-    if (user && user.isAdmin) this.columns.push(this.deleteColumn);
+    if (user && user.isAdmin) {
+      this.columns.push(this.deleteColumn);
+      this.columns.push(this.adminEditColumn);
+    }
   }
 
   render() {
