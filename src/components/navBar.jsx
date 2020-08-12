@@ -1,13 +1,14 @@
-import React from "react";
+import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
-
-const NavBar = ({ user }) => {
+import Navbar from "react-bootstrap/Navbar";
+import { Nav, Form, FormControl, Button } from "react-bootstrap";
+const Navigation = ({ user }) => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <Link className="navbar-brand" to="/home">
         Dolan
       </Link>
-      <button
+      {/* <button
         className="navbar-toggler"
         type="button"
         data-toggle="collapse"
@@ -17,8 +18,8 @@ const NavBar = ({ user }) => {
         aria-label="Toggle navigation"
       >
         <span className="navbar-toggler-icon" />
-      </button>
-      <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+      </button> */}
+      <div id="navbarNavAltMarkup">
         <div className="navbar-nav">
           <NavLink className="nav-item nav-link" to="/products">
             產品
@@ -52,7 +53,8 @@ const NavBar = ({ user }) => {
         </div>
       </div>
     </nav>
+    // {/* </React.Fragment> */}
   );
 };
 
-export default NavBar;
+export default Navigation;
