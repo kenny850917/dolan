@@ -21,8 +21,8 @@ class Cart extends Component {
     let addedItems = this.props.items.length ? (
       this.props.items.map((item) => {
         return (
-          <li className="collection-item avatar" key={item._id.$oid}>
-            <p>{item._id.$oid.$oiod}</p>
+          <li className="collection-item avatar" key={item._id}>
+            <p>{item._id.$oiod}</p>
             <div className="item-img">
               <img src={item.img} alt={item.img} className="" />
             </div>
@@ -41,7 +41,7 @@ class Cart extends Component {
                   <i
                     className="material-icons"
                     onClick={() => {
-                      this.handleAddQuantity(item._id.$oid);
+                      this.handleAddQuantity(item._id);
                     }}
                   >
                     arrow_drop_up
@@ -51,7 +51,7 @@ class Cart extends Component {
                   <i
                     className="material-icons"
                     onClick={() => {
-                      this.handleSubtractQuantity(item._id.$oid);
+                      this.handleSubtractQuantity(item._id);
                     }}
                   >
                     arrow_drop_down
@@ -61,7 +61,7 @@ class Cart extends Component {
               <button
                 className="waves-effect waves-light btn pink remove"
                 onClick={() => {
-                  this.handleRemove(item._id.$oid);
+                  this.handleRemove(item._id);
                 }}
               >
                 Remove
