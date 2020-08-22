@@ -7,10 +7,16 @@ import registerServiceWorker from "./registerServiceWorker";
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
 import "./bootstrap-overwrite.css";
+import cartReducer from "./components/redux/reducers/cartReducer";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
 
+const store = createStore(cartReducer);
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </BrowserRouter>,
   document.getElementById("root")
 );
