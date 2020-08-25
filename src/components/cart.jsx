@@ -4,6 +4,17 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { removeItem, addQuantity, subtractQuantity } from "./redux/cartActions";
 import Recipe from "./redux/reciepe";
+// import { Button, ButtonGroup, Card } from "react-bootstrap";
+import {
+  CardImg,
+  CardSubtitle,
+  CardTitle,
+  CardBody,
+  Card,
+  Button,
+  ButtonGroup,
+} from "reactstrap";
+
 class Cart extends Component {
   //to remove the item completely
   handleRemove = (id) => {
@@ -21,53 +32,101 @@ class Cart extends Component {
     let addedItems = this.props.items.length ? (
       this.props.items.map((item) => {
         return (
-          <li className="collection-item avatar" key={item._id}>
-            <p>{item._id.$oiod}</p>
-            <div className="item-img">
-              <img src={item.img} alt={item.img} className="" />
-            </div>
+          <Card key={item._id}>
+            <CardImg src={item.img} alt="image" />
+            <CardTitle>{item.title} </CardTitle>
 
-            <div className="item-desc">
-              <span className="title">{item.title}</span>
-              <p>{item.genre.name}</p>
-              <p>
-                <b>Price: {item.price}$</b>
-              </p>
-              <p>
-                <b>Quantity: {item.quantity}</b>
-              </p>
-              <div className="add-remove">
+            <CardTitle>Genre: {item.genre.name} </CardTitle>
+            <CardBody>
+              <CardSubtitle>Price: ${item.price}</CardSubtitle>
+              <CardSubtitle>Quantity: {item.quantity}</CardSubtitle>
+              <ButtonGroup size="sm">
                 <Link to="/customers">
-                  <i
-                    className="material-icons"
+                  {/* button group */}
+
+                  <Button
+                    className="btn btn secondary"
                     onClick={() => {
                       this.handleAddQuantity(item._id);
                     }}
                   >
-                    arrow_drop_up
-                  </i>
+                    +
+                  </Button>
                 </Link>
                 <Link to="/customers">
-                  <i
-                    className="material-icons"
+                  <Button
+                    className="btn btn secondary"
                     onClick={() => {
                       this.handleSubtractQuantity(item._id);
                     }}
                   >
-                    arrow_drop_down
-                  </i>
+                    -
+                  </Button>
                 </Link>
-              </div>
-              <button
-                className="waves-effect waves-light btn pink remove"
+              </ButtonGroup>
+              {/* button group ends */}
+              <Button
+                className="btn btn-danger"
                 onClick={() => {
                   this.handleRemove(item._id);
                 }}
               >
                 Remove
-              </button>
-            </div>
-          </li>
+              </Button>
+            </CardBody>
+          </Card>
+          // <li className="collection-item avatar" key={item._id}>
+
+          //   <div className="item-img">
+          //     <img src={item.img} alt={item.img} className="" />
+          //   </div>
+
+          //   <div className="item-desc">
+          //     <span className="title">{item.title}</span>
+          //     <p>{item.genre.name}</p>
+          //     <p>
+          //       <b>Price: {item.price}$</b>
+          //     </p>
+          //     <p>
+          //       <b>Quantity: {item.quantity}</b>
+          //     </p>
+          //     <div className="add-remove">
+          //       <ButtonGroup size="sm">
+          //         <Link to="/customers">
+          //           {/* button group */}
+
+          //           <Button
+          //             className="btn btn secondary"
+          //             onClick={() => {
+          //               this.handleAddQuantity(item._id);
+          //             }}
+          //           >
+          //             +
+          //           </Button>
+          //         </Link>
+          //         <Link to="/customers">
+          //           <Button
+          //             className="btn btn secondary"
+          //             onClick={() => {
+          //               this.handleSubtractQuantity(item._id);
+          //             }}
+          //           >
+          //             -
+          //           </Button>
+          //         </Link>
+          //         {/* button group ends */}
+          //       </ButtonGroup>
+          //     </div>
+          // <Button
+          //   className="btn btn-danger"
+          //   onClick={() => {
+          //     this.handleRemove(item._id);
+          //   }}
+          // >
+          //   Remove
+          // </Button>
+          //   </div>
+          // </li>
         );
       })
     ) : (

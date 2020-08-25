@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 //import { addShipping } from './actions/cartActions'
+import { Button } from "reactstrap";
 class Recipe extends Component {
   componentWillUnmount() {
     if (this.refs.shipping.checked) this.props.substractShipping();
@@ -33,7 +34,7 @@ class Recipe extends Component {
           </li>
         </div>
         <div className="checkout">
-          <button className="waves-effect waves-light btn">Checkout</button>
+          <Button className="btn btn-primary">Checkout</Button>
         </div>
       </div>
     );
