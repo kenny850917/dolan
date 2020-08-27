@@ -5,7 +5,7 @@ import Products from "./components/products";
 import ProductForm from "./components/productForm";
 
 import CheckoutForm from "./components/checkoutForm";
-import Customers from "./components/customers";
+import Cart from "./components/cart";
 import Home from "./components/home";
 import Profile from "./components/profile";
 import Rentals from "./components/rentals";
@@ -49,7 +49,7 @@ class App extends Component {
               render={(props) => <Products {...props} user={this.state.user} />}
             />
             <Route path="/home" component={Home} />
-            <Route path="/customers" component={Customers} />
+            <Route path="/customers" component={Cart} />
             <Route path="/profile" component={Profile} />
             <Route path="/rentals" component={Rentals} />
             <Route path="/not-found" component={NotFound} />

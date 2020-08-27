@@ -15,7 +15,7 @@ class ProductForm extends Form {
       title: "",
       genreId: "",
       numberInStock: "",
-      dailyRentalRate: "",
+      price: "",
     },
     genres: [],
     errors: {},
@@ -29,13 +29,9 @@ class ProductForm extends Form {
     numberInStock: Joi.number()
       .required()
       .min(0)
-      .max(100)
+      .max(1000)
       .label("Number in Stock"),
-    dailyRentalRate: Joi.number()
-      .required()
-      .min(0)
-      .max(10)
-      .label("Daily Rental Rate"),
+    price: Joi.number().required().min(0).label("Price "),
   };
 
   async populateGenres() {
@@ -81,7 +77,7 @@ class ProductForm extends Form {
       title: product.title,
       genreId: product.genre._id,
       numberInStock: product.numberInStock,
-      dailyRentalRate: product.dailyRentalRate,
+      price: product.price,
     };
   }
 
@@ -100,7 +96,7 @@ class ProductForm extends Form {
           {this.renderInput("title", "Title")}
           {this.renderSelect("genreId", "Genre", this.state.genres)}
           {this.renderInput("numberInStock", "Number in Stock", "number")}
-          {this.renderInput("dailyRentalRate", "Rate")}
+          {this.renderInput("price", "Price")}
           {this.renderButton("Save")}
         </form>
       </div>

@@ -1,6 +1,8 @@
 import React from "react";
 import ProductForm from "./productForm";
 import { getGenres } from "../services/genreService";
+import { connect } from "react-redux";
+import { addToCart } from "./redux/cartActions";
 import {
   Container,
   Card,
@@ -15,17 +17,22 @@ import {
 } from "reactstrap";
 
 class CheckoutForm extends ProductForm {
-  state = {
-    data: {
-      image: "",
-      title: "",
-      genreId: "",
-      numberInStock: "",
-      dailyRentalRate: "",
-    },
-    genres: [],
-    errors: {},
+  // state = {
+  //   data: {
+  //     image: "",
+  //     title: "",
+  //     genreId: "",
+  //     numberInStock: "",
+  //     dailyRentalRate: "",
+  //   },
+  //   genres: [],
+  //   errors: {},
+  // };
+
+  handleClick = (id) => {
+    this.props.addToCart(id);
   };
+
   async populateGenres() {
     const { data: genres } = await getGenres();
     this.setState({ genres });
@@ -44,6 +51,7 @@ class CheckoutForm extends ProductForm {
   };
 
   render() {
+    // console.log(this.props.item);
     return (
       <div>
         <Container>
@@ -60,7 +68,15 @@ class CheckoutForm extends ProductForm {
                 種類: {this.selectGenre(this.state.data.genreId)}
               </CardSubtitle>
               <CardText>內容</CardText>
-              <Button>加入購物車</Button>
+              <CardText>價格: </CardText>
+              <Button
+                onClick={() => {
+                  console.log(this.state._id, "stateId");
+                  this.handleClick(this.state.data._id);
+                }}
+              >
+                加入購物車
+              </Button>
             </CardBody>
           </Card>
         </Container>
@@ -69,4 +85,17 @@ class CheckoutForm extends ProductForm {
   }
 }
 
-export default CheckoutForm;
+const mapStateToProps = (state) => {
+  return {
+    items: state.items,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addToCart: (id) => {
+      dispatch(addToCart(id));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CheckoutForm);

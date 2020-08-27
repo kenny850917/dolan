@@ -21,7 +21,7 @@ class ProductsTable extends Component {
     },
     { path: "genre.name", label: "Genre" },
     { path: "numberInStock", label: "Stock" },
-    { path: "dailyRentalRate", label: "Rate" },
+    { path: "price", label: "Rate" },
     {
       key: "like",
       content: (product) => (
